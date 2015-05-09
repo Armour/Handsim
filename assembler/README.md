@@ -20,7 +20,7 @@
 * R类型 全部
 * I类型 全部
 * J类型 全部 （有些小bug 等下修改
-* 伪指令 未完成
+* 伪指令 全部
 * 格式指令 未完成
 
 # 目前测试样例与结果：
@@ -30,10 +30,10 @@
 ``` input: test.txt
 
  add $s0, $t0  , $t1 #dededefewf
-shit:   sub    $s0, $      s0, $t0  # hahaha
-beq $s0, $  zero  , rr   
+shit:   Sub    $s0, $      s0, $t0  # hahaha
+bEq $s0, $  zero  , rr   
 beq  $s1, $s0, 1
-    sw $s1, 2(  $t0) #defe efwfwef (f we)
+    sW $S1, 2(  $t0) #defe efwfwef (f we)
 rr:    lw $v0, 2*(3-1)( $t0  )#ha
 j  0x03   
 5*8:    j   shit
@@ -41,6 +41,9 @@ j 5*8
 
 addi $t0 $zero 1-3+4*(3-1)
 add $t1 $t0 $s1
+fuck:    BLT $s0, $t0, rr
+BGE $t1, $s1, fuck
+syscall
 
 ```
 
@@ -59,29 +62,40 @@ add $t1 $t0 $s1
 00001000000000000000000000011100
 00100000000010000000000000000110
 00000001000100010100100000100000
+00000010000010000000100000101010
+00010100001000000000000000010100
+00000001001100010000100000101010
+00010000001000000000000000101100
+00000000000000000000000000001100
 
-``` 
+
+```
 
 ### 反汇编代码过程结果：
 
 ``` output: back.txt
 
-        add $s0, $t0, $t1
-mark_1: sub $s0, $s0, $t0
-        beq $s0, $zero, mark_5
-        beq $s1, $s0, mark_4
-mark_4: sw $s1, 2($t0)
-mark_5: lw $v0, 4($t0)
-        j mark_9
-mark_7: j mark_1
-        j mark_7
-mark_9: addi $t0, $zero, 6
-        add $t1, $t0, $s1
+             add $s0, $t0, $t1
+mark_1   :   sub $s0, $s0, $t0
+             beq $s0, $zero, mark_5
+             beq $s1, $s0, mark_4
+mark_4   :   sw $s1, 2($t0)
+mark_5   :   lw $v0, 4($t0)
+             j mark_9
+mark_7   :   j mark_1
+             j mark_7
+mark_9   :   addi $t0, $zero, 6
+             add $t1, $t0, $s1
+mark_11  :   slt $at, $s0, $t0
+             bne $at, $zero, mark_5
+             slt $at, $t1, $s1
+             beq $at, $zero, mark_11
+             syscall
+
 
 ```
 
 # 待完成：
 
 * J类型bug修正
-* 伪指令完成
 * 错误提示
