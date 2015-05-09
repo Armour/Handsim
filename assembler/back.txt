@@ -1,13 +1,13 @@
              add $s0, $t0, $t1
 mark_1   :   sub $s0, $s0, $t0
              beq $s0, $zero, mark_5
-             beq $s1, $s0, mark_4
-mark_4   :   sw $s1, 2($t0)
+mark_3   :   beq $s1, $s0, mark_11
+             sw $s1, 2($t0)
 mark_5   :   lw $v0, 4($t0)
-             j mark_9
+             j mark_3
 mark_7   :   j mark_1
              j mark_7
-mark_9   :   addi $t0, $zero, 6
+             addi $t0, $zero, 6
              add $t1, $t0, $s1
 mark_11  :   slt $at, $s0, $t0
              bne $at, $zero, mark_5
