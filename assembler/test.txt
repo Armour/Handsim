@@ -1,7 +1,7 @@
  add $s0, $t0  , $t1 #dededefewf
 shit:   Sub    $s0, $      s0, $t0  # hahaha
 bEq $s0, $  zero  , rr   
-beq  $s1, $s0, 1
+beq  $s1, $s0, fuck
     sW $S1, 2(  $t0) #defe efwfwef (f we)
 rr:    lw $v0, 2*(3-1)( $t0  )#ha
 j  0x03   
