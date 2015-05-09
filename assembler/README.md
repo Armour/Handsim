@@ -26,8 +26,10 @@
 # 目前测试样例与结果：
 
 ### 汇编代码输入：
+ 
+**input: test.txt**
 
-``` input: test.txt
+``` 
 
  add $s0, $t0  , $t1 #dededefewf
 shit:   Sub    $s0, $      s0, $t0  # hahaha
@@ -49,7 +51,9 @@ syscall
 
 ### 机器码输出：
 
-``` output: out
+**output: out**
+
+``` 
 
 00000001000010011000000000100000
 00000010000010001000000000100010
@@ -73,7 +77,9 @@ syscall
 
 ### 反汇编代码过程结果：
 
-``` output: back.txt
+**output: back.txt**
+
+``` 
 
              add $s0, $t0, $t1
 mark_1   :   sub $s0, $s0, $t0
