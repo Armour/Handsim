@@ -1,10 +1,16 @@
 # README.md
 ---
+### format_instructions.py:
+用于将格式指令转换成汇编代码，直接 python format_instrutions.py 即可，会自动读入 origim.mips 输出结果至origin.mips
+
 ### mips.py:
-用于将汇编代码转成机器码，直接 python mips.py 即可，会自动读入 test.txt 输出结果至 out
+用于将汇编代码转成机器码，直接 python mips.py 即可，会自动读入 origin.mips 输出结果至 machineCode.mips
 
 ### dismips.py:
-用于将机器吗转换成汇编代码，直接 python dismips.py 即可，会自动读入 out 输出结果至 back.txt
+用于将机器吗转换成汇编代码，直接 python dismips.py 即可，会自动读入 machineCode.mips 输出结果至 disassembleCode.mips
+
+### formatDict.py:
+这是将格式指令转换成汇编代码时的字典，不用进行编译，会自动被 import 到 mips.py 里面
 
 ### assembleDict.py:
 这是将汇编代码转换成机器码时的字典，不用进行编译，会自动被 import 到 mips.py 里面
@@ -21,7 +27,7 @@
 * I类型 全部
 * J类型 全部
 * 伪指令 全部
-* 格式指令 未完成
+* 格式指令 部分完成
 
 # 目前测试样例与结果：
 

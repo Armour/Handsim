@@ -3,6 +3,7 @@
 
 import re
 from assembleDict import *
+from formatDict import addr
 
 dict_mark = {}  # 用于map标记与内存坐标的对应关系
 command = []  # 存储命令
@@ -51,7 +52,7 @@ def check_pseudo(cmd, PC):
 
 def first_time_handle():
     PC = 0  # 当前内存坐标
-    with open('test.txt', 'r+') as test:
+    with open('format.mips', 'r+') as test:
         for line in test:
             if line != '\n':  # 空行
                 if '#' in line:  # 注释
@@ -114,7 +115,7 @@ def J_type(arr, PC):
 
 def second_time_handle():
     PC = 0  # 当前内存坐标
-    with open('out', 'w+') as output:
+    with open('machineCode.mips', 'w+') as output:
         for sentence in command:
             arr = sentence.split()
             if arr[0] in R_dict.keys():
