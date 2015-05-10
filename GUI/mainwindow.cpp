@@ -8,9 +8,6 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
     setWindowTitle(tr("Handsim"));
 
-    createActions();
-    createToolBars();
-
     canvas = new QWidget();
     this->setCentralWidget(canvas);
 
@@ -18,30 +15,34 @@ MainWindow::MainWindow(QWidget *parent) :
 
     bash = new Bash(canvas);
     mcCode = new McCode(canvas);
-    amCode = new AmCode(canvas);
+    memory = new Memory(canvas);
     regInfo = new RegInfo(canvas);
 
     QSizePolicy spBash(QSizePolicy::Preferred, QSizePolicy::Preferred);
     QSizePolicy spMcCode(QSizePolicy::Preferred, QSizePolicy::Preferred);
-    QSizePolicy spAmCode(QSizePolicy::Preferred, QSizePolicy::Preferred);
+    QSizePolicy spMemory(QSizePolicy::Preferred, QSizePolicy::Preferred);
     QSizePolicy spRegInfo(QSizePolicy::Preferred, QSizePolicy::Preferred);
 
     spBash.setHorizontalStretch(2);
-    spMcCode.setHorizontalStretch(2);
-    spAmCode.setHorizontalStretch(2);
+    spMcCode.setHorizontalStretch(1);
+    spMemory.setHorizontalStretch(1);
     spRegInfo.setHorizontalStretch(1);
 
     bash->setSizePolicy(spBash);
     mcCode->setSizePolicy(spMcCode);
-    amCode->setSizePolicy(spAmCode);
+    memory->setSizePolicy(spMemory);
     regInfo->setSizePolicy(spRegInfo);
+
+    createActions();
+    createToolBars();
 
     layout1->addWidget(bash);
     layout1->addWidget(mcCode);
-    layout1->addWidget(amCode);
+    layout1->addWidget(memory);
     layout1->addWidget(regInfo);
 
     canvas->setLayout(layout1);
+
 }
 
 MainWindow::~MainWindow()
@@ -69,6 +70,15 @@ void MainWindow::createActions() {
     clearAction = new QAction(QIcon("clear.png"), tr("clear"), this);
     saveFileAction->setShortcut(tr("Ctrl+C"));
     openFileAction->setStatusTip(tr("clear records"));
+
+    // connections
+    connect(openFileAction, SIGNAL(triggered()), bash, SLOT(slotOpen()));
+    connect(saveFileAction, SIGNAL(triggered()), bash, SLOT(slotSave()));
+    connect(commitAction, SIGNAL(triggered()), bash, SLOT(slotCommit()));
+    connect(clearAction, SIGNAL(triggered()), bash, SLOT(slotClear()));
+    connect(clearAction, SIGNAL(triggered()), mcCode, SLOT(slotClear()));
+    connect(clearAction, SIGNAL(triggered()), memory, SLOT(slotClear()));
+    connect(clearAction, SIGNAL(triggered()), regInfo, SLOT(slotClear()));
 }
 
 void MainWindow::createToolBars() {

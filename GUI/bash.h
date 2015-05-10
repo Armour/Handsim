@@ -17,7 +17,10 @@ public:
 signals:
 
 public slots:
-
+    void slotOpen();
+    void slotSave();
+    void slotCommit();
+    void slotClear();
 };
 
 #endif // BASH_H

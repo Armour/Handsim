@@ -11,3 +11,7 @@ McCode::McCode(QWidget *parent) : QWidget(parent) {
     mainLayout->addWidget(title);
     mainLayout->addWidget(text);
 }
+
+void McCode::slotClear() {
+    text->clear();
+}

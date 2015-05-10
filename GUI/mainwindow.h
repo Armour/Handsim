@@ -15,9 +15,9 @@
 #include <QHBoxLayout>
 #include <QGridLayout>
 #include "bash.h"
-#include "reginfo.h"
 #include "mccode.h"
-#include "amcode.h"
+#include "memory.h"
+#include "reginfo.h"
 
 namespace Ui {
 class MainWindow;
@@ -44,9 +44,10 @@ private:
 
     QWidget *canvas;
     Bash *bash;
-    RegInfo *regInfo;
     McCode *mcCode;
-    AmCode *amCode;
+    Memory *memory;
+
+    RegInfo *regInfo;
     QAction *openFileAction;
     QAction *saveFileAction;
     QAction *commitAction;

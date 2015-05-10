@@ -12,6 +12,7 @@ class RegInfo : public QWidget
 public:
     explicit RegInfo(QWidget *parent = 0);
 
+    QLabel *title;
     QLabel *zrLabel, *atLabel, *v0Label, *v1Label, *a0Label, *a1Label, *a2Label, *a3Label,
            *t0Label, *t1Label, *t2Label, *t3Label, *t4Label, *t5Label, *t6Label, *t7Label,
            *s0Label, *s1Label, *s2Label, *s3Label, *s4Label, *s5Label, *s6Label, *s7Label,
@@ -24,7 +25,7 @@ public:
 signals:
 
 public slots:
-
+    void slotClear();
 };
 
 #endif // REGINFO_H
