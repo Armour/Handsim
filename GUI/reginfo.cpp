@@ -69,6 +69,39 @@ RegInfo::RegInfo(QWidget *parent) :
     fpLineEdit = new QLineEdit;
     raLineEdit = new QLineEdit;
 
+    zrLineEdit->setEnabled(false);
+    atLineEdit->setEnabled(false);
+    v0LineEdit->setEnabled(false);
+    v1LineEdit->setEnabled(false);
+    a0LineEdit->setEnabled(false);
+    a1LineEdit->setEnabled(false);
+    a2LineEdit->setEnabled(false);
+    a3LineEdit->setEnabled(false);
+    t0LineEdit->setEnabled(false);
+    t1LineEdit->setEnabled(false);
+    t2LineEdit->setEnabled(false);
+    t3LineEdit->setEnabled(false);
+    t4LineEdit->setEnabled(false);
+    t5LineEdit->setEnabled(false);
+    t6LineEdit->setEnabled(false);
+    t7LineEdit->setEnabled(false);
+    s0LineEdit->setEnabled(false);
+    s1LineEdit->setEnabled(false);
+    s2LineEdit->setEnabled(false);
+    s3LineEdit->setEnabled(false);
+    s4LineEdit->setEnabled(false);
+    s5LineEdit->setEnabled(false);
+    s6LineEdit->setEnabled(false);
+    s7LineEdit->setEnabled(false);
+    t8LineEdit->setEnabled(false);
+    t9LineEdit->setEnabled(false);
+    k0LineEdit->setEnabled(false);
+    k1LineEdit->setEnabled(false);
+    gpLineEdit->setEnabled(false);
+    spLineEdit->setEnabled(false);
+    fpLineEdit->setEnabled(false);
+    raLineEdit->setEnabled(false);
+
     mainLayout = new QGridLayout(this);
     mainLayout->setSpacing(6);
 

@@ -7,7 +7,7 @@ int main(int argc, char *argv[])
     MainWindow w;
     w.setMinimumHeight(600);
     w.setMinimumWidth(800);
-    w.show();
+    w.showMaximized();
 
     return a.exec();
 }

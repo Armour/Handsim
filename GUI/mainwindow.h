@@ -17,6 +17,7 @@
 #include "bash.h"
 #include "reginfo.h"
 #include "mccode.h"
+#include "amcode.h"
 
 namespace Ui {
 class MainWindow;
@@ -44,6 +45,8 @@ private:
     QWidget *canvas;
     Bash *bash;
     RegInfo *regInfo;
+    McCode *mcCode;
+    AmCode *amCode;
     QAction *openFileAction;
     QAction *saveFileAction;
     QAction *commitAction;

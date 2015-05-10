@@ -17,18 +17,29 @@ MainWindow::MainWindow(QWidget *parent) :
     QHBoxLayout *layout1 = new QHBoxLayout(this);
 
     bash = new Bash(canvas);
+    mcCode = new McCode(canvas);
+    amCode = new AmCode(canvas);
     regInfo = new RegInfo(canvas);
 
     QSizePolicy spBash(QSizePolicy::Preferred, QSizePolicy::Preferred);
+    QSizePolicy spMcCode(QSizePolicy::Preferred, QSizePolicy::Preferred);
+    QSizePolicy spAmCode(QSizePolicy::Preferred, QSizePolicy::Preferred);
     QSizePolicy spRegInfo(QSizePolicy::Preferred, QSizePolicy::Preferred);
-    spBash.setHorizontalStretch(1);
+
+    spBash.setHorizontalStretch(2);
+    spMcCode.setHorizontalStretch(2);
+    spAmCode.setHorizontalStretch(2);
     spRegInfo.setHorizontalStretch(1);
+
     bash->setSizePolicy(spBash);
+    mcCode->setSizePolicy(spMcCode);
+    amCode->setSizePolicy(spAmCode);
     regInfo->setSizePolicy(spRegInfo);
 
     layout1->addWidget(bash);
-    layout1->addWidget(regInfo);
     layout1->addWidget(mcCode);
+    layout1->addWidget(amCode);
+    layout1->addWidget(regInfo);
 
     canvas->setLayout(layout1);
 }
