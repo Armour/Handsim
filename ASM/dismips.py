@@ -8,9 +8,9 @@ command = []
 
 def handle(target, PC):
     if target[0] == '0':
-        return PC + int(target, 2)
+        return PC + int(target, 2) + 1
     else:
-        return PC - int(bin(int(target[1:], 2) - 1).replace('1', '_').replace('0', '1').replace('_', '0')[2:], 2)
+        return PC - int(bin(int(target[1:], 2) - 1).replace('1', '_').replace('0', '1').replace('_', '0')[2:], 2) + 1
 
 def R_type(line):
     if R_dict[line[-6:]][0] == 0:

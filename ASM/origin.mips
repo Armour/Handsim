@@ -4,4 +4,4 @@ length: .word 7
   .text
   .globl main
 main: li $8, 0
-  la $11, array
+  la $s1, array

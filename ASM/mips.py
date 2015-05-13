@@ -16,7 +16,7 @@ def handle_j(target, PC): #用来处理j类里面后面的target数值，优先�
 
 def handle_i(target, PC): #用来处理i类里面后面的target数值
     if target in dict_mark:
-        tmp = dict_mark[target] - PC/4
+        tmp = dict_mark[target] - PC/4 - 1
         if tmp >= 0:
             return "{0:0>16d}".format(int(bin(tmp)[2:]))[-16:]
         else:
