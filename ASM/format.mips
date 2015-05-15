@@ -1,13 +1,13 @@
-la $s9,31
+la $s7,31
 addi $s0,$zero,5
-sw $s0,0($s9)
+sw $s0,0($s7)
 addi $s0,$zero,10
-sw $s0,-1($s9)
+sw $s0,-1($s7)
 addi $s0,$zero,20
-sw $s0,-2($s9)
+sw $s0,-2($s7)
 addi $s0,$zero,25
-sw $s0,-3($s9)
+sw $s0,-3($s7)
 addi $s0,$zero,7
-sw $s0,-4($s9)
+sw $s0,-4($s7)
 main: li $8, 0
-la $11, array
+la $s1, array

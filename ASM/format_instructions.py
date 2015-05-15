@@ -1,6 +1,5 @@
 import re
 
-
 def scan_mips():
     offset = 0
     PC = -4
@@ -29,7 +28,7 @@ def scan_mips():
                                 continue
                             elif line[1] == 'd':
                                 PC += 4
-                                output.write('la $s9,31\n')
+                                output.write('la $s7,31\n')
                                 dotg = 0
                                 dotd = 1
                                 dott = 0
@@ -58,7 +57,7 @@ def scan_mips():
                                     output.write(
                                         'sw $s0,' +
                                         str(offset) +
-                                        '($s9)\n')
+                                        '($s7)\n')
                                     offset -= 1
                                 # if str_typ in data_type
                                 #  pass
