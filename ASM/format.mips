@@ -1,13 +1,14 @@
-la $s7,31
-addi $s0,$zero,5
-sw $s0,0($s7)
-addi $s0,$zero,10
-sw $s0,-1($s7)
-addi $s0,$zero,20
-sw $s0,-2($s7)
-addi $s0,$zero,25
-sw $s0,-3($s7)
-addi $s0,$zero,7
-sw $s0,-4($s7)
-main: li $8, 0
-la $s1, array
+main: add $s0, $t0  , $t1 #dededefewf
+shit:   Sub    $s0, $      s0, $t0  # hahaha
+bEq $s0, $  zero  , rr
+beq  $s1, $s0, fuck
+sW $S1, 2(  $t0) #defe efwfwef (f we)
+rr:    lw $v0, 2*(3-1)( $t0  )#ha
+j  0x03
+5*8:    j   shit
+j 5*8
+addi $t0 $zero 1-3+4*(3-1)
+add $t1 $t0 $s1
+fuck:    BLT $s0, $t0, rr
+BGE $t1, $s1, fuck
+syscall

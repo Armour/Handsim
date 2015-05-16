@@ -1,4 +1,11 @@
- add $s0, $t0  , $t1 #dededefewf
+  .data
+array:  .word 5, 10, 20, 25 #wawawawa
+length: .word 7
+  .text
+  .globl main
+main: li $8, 0
+  la $s1, array 
+    add $s0, $t0  , $t1 #dededefewf
 shit:   Sub    $s0, $      s0, $t0  # hahaha
 bEq $s0, $  zero  , rr   
 beq  $s1, $s0, fuck
