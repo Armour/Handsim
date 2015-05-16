@@ -1,4 +1,17 @@
 #include "reginfo.h"
+#include "mmu.h"
+
+extern MMU mmu;
+
+char *word2char(unsigned int value) {
+    char *c;
+    c = new char[33];
+    for (int i = 0; i < 32; i++) {
+        c[31 - i] = ((value & (1 << i)) == 0) ? '0' : '1';
+    }
+    c[32] = '\0';
+    return c;
+}
 
 RegInfo::RegInfo(QWidget *parent) :
     QWidget(parent)
@@ -210,4 +223,40 @@ void RegInfo::slotClear() {
     spLineEdit->clear();
     fpLineEdit->clear();
     raLineEdit->clear();
+}
+
+void RegInfo::slotPrint() {
+    zrLineEdit->setText(word2char(mmu.getReg(0)));
+    atLineEdit->setText(word2char(mmu.getReg(1)));
+    v0LineEdit->setText(word2char(mmu.getReg(2)));
+    v1LineEdit->setText(word2char(mmu.getReg(3)));
+    a0LineEdit->setText(word2char(mmu.getReg(4)));
+    a1LineEdit->setText(word2char(mmu.getReg(5)));
+    a2LineEdit->setText(word2char(mmu.getReg(6)));
+    a3LineEdit->setText(word2char(mmu.getReg(7)));
+    t0LineEdit->setText(word2char(mmu.getReg(8)));
+    t1LineEdit->setText(word2char(mmu.getReg(9)));
+    t2LineEdit->setText(word2char(mmu.getReg(10)));
+    t3LineEdit->setText(word2char(mmu.getReg(11)));
+    t4LineEdit->setText(word2char(mmu.getReg(12)));
+    t5LineEdit->setText(word2char(mmu.getReg(13)));
+    t6LineEdit->setText(word2char(mmu.getReg(14)));
+    t7LineEdit->setText(word2char(mmu.getReg(15)));
+    s0LineEdit->setText(word2char(mmu.getReg(16)));
+    s1LineEdit->setText(word2char(mmu.getReg(17)));
+    s2LineEdit->setText(word2char(mmu.getReg(18)));
+    s3LineEdit->setText(word2char(mmu.getReg(19)));
+    s4LineEdit->setText(word2char(mmu.getReg(20)));
+    s5LineEdit->setText(word2char(mmu.getReg(21)));
+    s6LineEdit->setText(word2char(mmu.getReg(22)));
+    s7LineEdit->setText(word2char(mmu.getReg(23)));
+    t8LineEdit->setText(word2char(mmu.getReg(24)));
+    t9LineEdit->setText(word2char(mmu.getReg(25)));
+    k0LineEdit->setText(word2char(mmu.getReg(26)));
+    k1LineEdit->setText(word2char(mmu.getReg(27)));
+    gpLineEdit->setText(word2char(mmu.getReg(28)));
+    spLineEdit->setText(word2char(mmu.getReg(29)));
+    fpLineEdit->setText(word2char(mmu.getReg(30)));
+    raLineEdit->setText(word2char(mmu.getReg(31)));
+
 }

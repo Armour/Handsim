@@ -1,5 +1,9 @@
 #include "memory.h"
+#include "mmu.h"
 #include <QString>
+
+extern char *word2char(unsigned int value);
+extern MMU mmu;
 
 Memory::Memory(QWidget *parent) : QWidget(parent) {
     QString str1;
@@ -22,13 +26,19 @@ Memory::Memory(QWidget *parent) : QWidget(parent) {
     mainLayout->setSpacing(6);
 
     mainLayout->addWidget(title, 0, 0, 1, 2);
-    for (int i = 1; i < 33; i++) {
-        mainLayout->addWidget(label[i - 1], i, 0, 1, 1);
-        mainLayout->addWidget(lineEdit[i - 1], i, 1, 1, 1);
+    for (int i = 32; i > 0; i--) {
+        mainLayout->addWidget(label[i - 1], 33 - i, 0, 1, 1);
+        mainLayout->addWidget(lineEdit[i - 1], 33 - i, 1, 1, 1);
     }
 }
 
 void Memory::slotClear() {
     for (int i = 0; i < 32; i++)
         lineEdit[i]->clear();
+}
+
+void Memory::slotPrint() {
+    for (int i = 0; i < 32; i++) {
+        lineEdit[i]->setText(word2char(mmu.getMem(i)));
+    }
 }

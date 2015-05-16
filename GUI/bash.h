@@ -15,7 +15,7 @@ public:
     QTextEdit *text;
     QVBoxLayout *mainLayout;
 signals:
-
+    void printReg();
 public slots:
     void slotOpen();
     void slotSave();

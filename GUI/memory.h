@@ -19,6 +19,7 @@ signals:
 
 public slots:
     void slotClear();
+    void slotPrint();
 };
 
 #endif // MEMORY_H

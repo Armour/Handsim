@@ -51,6 +51,9 @@ void Bash::slotCommit() {
     out << text->toPlainText();
     file.flush();
     file.close();
+
+    // execute code
+    emit printReg();
 }
 
 void Bash::slotClear() {

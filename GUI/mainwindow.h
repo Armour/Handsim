@@ -53,6 +53,8 @@ private:
     QAction *commitAction;
     QAction *clearAction;
     QToolBar *toolBar;
+public slots:
+    void slotClear();
 };
 
 #endif // MAINWINDOW_H
