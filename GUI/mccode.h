@@ -18,6 +18,7 @@ signals:
 
 public slots:
     void slotClear();
+    void slotPrint();
 };
 
 #endif // MCCODE_H

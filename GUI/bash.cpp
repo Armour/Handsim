@@ -1,10 +1,13 @@
 #include "bash.h"
+#include <iostream>
 #include <QTextEdit>
 #include <QVBoxLayout>
 #include <QFile>
 #include <QTextStream>
 #include <QDebug>
 #include <QFileDialog>
+#include <QProcess>
+#include <QProcessEnvironment>
 
 Bash::Bash(QWidget *parent) : QWidget(parent) {
     title = new QLabel(tr("Source Code"));
@@ -42,7 +45,7 @@ void Bash::slotSave() {
 }
 
 void Bash::slotCommit() {
-    QFile file("sourceCode.txt");
+    QFile file("ASM/origin.mips");
     if (!file.open(QFile::WriteOnly | QFile::Text)) {
         qDebug() << " Could not open file for writing";
         return;
@@ -52,8 +55,11 @@ void Bash::slotCommit() {
     file.flush();
     file.close();
 
-    // execute code
-    emit printReg();
+    QProcess *process = new QProcess(this);
+    QString fileName = QDir::currentPath() + "/ASM/run.sh";
+    process->start(fileName);
+    emit runMMU();
+    //emit printReg();
 }
 
 void Bash::slotClear() {

@@ -2,6 +2,7 @@
 #include "ui_mainwindow.h"
 #include "mmu.h"
 
+extern void execute(MMU& mmu);
 extern MMU mmu;
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -46,8 +47,10 @@ MainWindow::MainWindow(QWidget *parent) :
 
     canvas->setLayout(layout1);
 
-    connect(bash, SIGNAL(printReg()), regInfo, SLOT(slotPrint()));
-    connect(bash, SIGNAL(printReg()), memory, SLOT(slotPrint()));
+    connect(this, SIGNAL(printReg()), regInfo, SLOT(slotPrint()));
+    connect(this, SIGNAL(printReg()), memory, SLOT(slotPrint()));
+    connect(this, SIGNAL(printReg()), mcCode, SLOT(slotPrint()));
+    connect(bash, SIGNAL(runMMU()), this, SLOT(slotRunMMU()));
 }
 
 MainWindow::~MainWindow()
@@ -97,4 +100,9 @@ void MainWindow::createToolBars() {
 
 void MainWindow::slotClear() {
     mmu.reset();
+}
+
+void MainWindow::slotRunMMU() {
+    execute(mmu);
+    emit printReg();
 }

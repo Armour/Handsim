@@ -53,8 +53,11 @@ private:
     QAction *commitAction;
     QAction *clearAction;
     QToolBar *toolBar;
+signals:
+    void printReg();
 public slots:
     void slotClear();
+    void slotRunMMU();
 };
 
 #endif // MAINWINDOW_H

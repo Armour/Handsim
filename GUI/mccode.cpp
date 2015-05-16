@@ -1,4 +1,7 @@
 #include "mccode.h"
+#include <QFile>
+#include <QDebug>
+#include <QTextStream>
 #include <QTextEdit>
 #include <QVBoxLayout>
 
@@ -14,4 +17,16 @@ McCode::McCode(QWidget *parent) : QWidget(parent) {
 
 void McCode::slotClear() {
     text->clear();
+}
+
+void McCode::slotPrint() {
+    QFile file("ASM/machineCode.mips");
+    if (!file.open(QFile::ReadOnly | QFile::Text)) {
+        qDebug() << " Could not open the file for reading";
+        return;
+    }
+    QTextStream in(&file);
+    QString machineCode = in.readAll();
+    text->clear();
+    text->insertPlainText(machineCode);
 }
