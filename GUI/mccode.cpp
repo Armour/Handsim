@@ -20,7 +20,7 @@ void McCode::slotClear() {
 }
 
 void McCode::slotPrint() {
-    QFile file("ASM/machineCode.mips");
+    QFile file("ASM/machineCode.txt");
     if (!file.open(QFile::ReadOnly | QFile::Text)) {
         qDebug() << " Could not open the file for reading";
         return;

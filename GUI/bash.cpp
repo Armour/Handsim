@@ -45,7 +45,7 @@ void Bash::slotSave() {
 }
 
 void Bash::slotCommit() {
-    QFile file("ASM/origin.mips");
+    QFile file("ASM/origin.txt");
     if (!file.open(QFile::WriteOnly | QFile::Text)) {
         qDebug() << " Could not open file for writing";
         return;

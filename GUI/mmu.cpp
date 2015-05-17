@@ -121,7 +121,7 @@ void Rtype(MMU& mem, string& ins) {
     }
 }
 void execute(MMU& mmu) {
-    ifstream instru("ASM/machineCode.mips");
+    ifstream instru("ASM/machineCode.txt");
     string str;
     string opcode;
     string target;
