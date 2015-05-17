@@ -52,7 +52,7 @@ def check_pseudo(cmd, PC):
 
 def first_time_handle():
     PC = 0  # 当前内存坐标
-    with open('format.mips', 'r+') as test:
+    with open('format.txt', 'r+') as test:
         for line in test:
             if line != '\n':  # 空行
                 if '#' in line:  # 注释
@@ -115,7 +115,7 @@ def J_type(arr, PC):
 
 def second_time_handle():
     PC = 0  # 当前内存坐标
-    with open('machineCode.mips', 'w+') as output:
+    with open('machineCode.txt', 'w+') as output:
         for sentence in command:
             arr = sentence.split()
             if arr[0] in R_dict.keys():

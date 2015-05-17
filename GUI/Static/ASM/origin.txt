@@ -1,5 +1,6 @@
-
- add $s0, $t0  , $t1 #dededefewf
+  .text
+  .globl main
+main: add $s0, $t0  , $t1 #dededefewf
 shit:   Sub    $s0, $      s0, $t0  # hahaha
 bEq $s0, $  zero  , rr   
 beq  $s1, $s0, fuck

@@ -47,7 +47,7 @@ def J_type(line):
 
 def first_time_handle():
     PC = 0
-    with open('machineCode.mips', 'r+') as data:
+    with open('machineCode.txt', 'r+') as data:
         for line in data:
             line = line.rstrip()
             if line[0:6] == '000000':
@@ -73,7 +73,7 @@ def second_time_handle(totalLine):
             command[i] = '             ' + command[i]
 
 def print_command():
-    with open('disassembleCode.mips', 'w+') as output:
+    with open('disassembleCode.txt', 'w+') as output:
         for line in command:
             output.write(line + '\n')
 

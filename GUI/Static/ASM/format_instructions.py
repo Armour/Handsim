@@ -1,13 +1,13 @@
 import re
 
-def scan_mips():
+def scan_txt():
     offset = 0
     PC = -4
     dotd = 0
     dott = 0
     dotg = 0
-    with open('origin.mips', 'r+') as file:
-        with open('format.mips', 'w+') as output:
+    with open('origin.txt', 'r+') as file:
+        with open('format.txt', 'w+') as output:
             with open('formatDict.py', 'w+') as lists:
                 lists.write('addr = {\n')
                 for line in file:
@@ -71,7 +71,7 @@ def scan_mips():
                 lists.write('}\n')
 
 def main():
-    scan_mips()
+    scan_txt()
 
 if __name__ == '__main__':
     main()
