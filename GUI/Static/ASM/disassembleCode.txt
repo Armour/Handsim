@@ -13,4 +13,3 @@ mark_11  :   slt $at, $s0, $t0
              bne $at, $zero, mark_5
              slt $at, $t1, $s1
              beq $at, $zero, mark_11
-             syscall
