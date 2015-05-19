@@ -45,7 +45,7 @@ void Bash::slotSave() {
 }
 
 void Bash::slotCommit() {
-    QFile file("ASM/origin.txt");
+    QFile file("ASM/origin.mips");
     if (!file.open(QFile::WriteOnly | QFile::Text)) {
         qDebug() << " Could not open file for writing";
         return;
@@ -56,8 +56,13 @@ void Bash::slotCommit() {
     file.close();
 
     QProcess *process = new QProcess(this);
-    QString fileName = QDir::currentPath() + "/ASM/run.sh";
+    QString fileName = QDir::currentPath() + "/ASM/format_instructions.py";
     process->start(fileName);
+    fileName = QDir::currentPath() + "/ASM/mips.py";
+    process->start(fileName);
+    fileName = QDir::currentPath() + "/ASM/dismips.py";
+    process->start(fileName);
+
     emit runMMU();
     //emit printReg();
 }

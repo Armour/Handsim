@@ -8,14 +8,14 @@ int strtoint(string& s) {
 	int i;
 	int num=0;
 	for(i=0;i<s.length();i++) {
-		num=num<<1+s.at(i)-'0';
+		num=num*2+s.at(i)-'0';
 	}
 	return num;
 }
 int strtocom(string& s) {
 	int i;
 	int flag=0;
-	int num;
+	int num=0;
 	if(s.at(0)=='1') {
 		for(i=s.length();i>=0;i--) {
 			if(s.at(i)=='1'&&!flag) {
@@ -29,16 +29,21 @@ int strtocom(string& s) {
 		}	
 	}
 	for(i=0;i<s.length();i++) {
-		num=num<<1+s.at(i)-'0';
+		num=num*1+(s.at(i)-'0');
 	}
 	if(flag) num*=-1;
+	return num;
 }
 void Itype(MMU& mem, string& ins, ifstream& fs) {
-	string op,rs,rt,imme;
-	op.assign(ins,0,6);
-	rs.assign(ins,6,5);
-	rt.assign(ins,11,5);
-	imme.assign(ins,16,16);
+	cout<<ins<<endl;
+	string op(ins,0,6);
+	string rs(ins,6,5);
+	string rt(ins,11,5);
+	string imme(ins,16,16);
+	cout << op << endl;
+	cout << rs << endl;
+	cout << rt << endl;
+	cout << imme << endl;
 	if(!op.compare("001000")) { //addi
 		mem.setReg(strtoint(rt),mem.getReg(strtoint(rs))+strtocom(imme));
 	}
@@ -127,24 +132,26 @@ void execute(MMU& mmu) {
 	while(!instru.eof()) {
 		getline(instru,str);
 		opcode.assign(str,0,6);
+		cout << str << endl;
+		cout << opcode << endl;
 		if(!opcode.compare("000000")) { //R type instructions
 			Rtype(mmu,str);
-			cout<<opcode<<endl;
+			//cout<<opcode<<endl;
 		}
 		else if(!opcode.compare("000010")) {
 			target.assign(str,6,26);
 			instru.seekg(34*strtoint(target));
-			cout<<opcode<<endl;
+			//cout<<opcode<<endl;
 		}
 		else if(!opcode.compare("000011")) {
 			target.assign(str,6,26);
 			mmu.setReg(31,(instru.tellg()/34)*34);
 			instru.seekg(34*strtoint(target));
-			cout<<opcode<<endl;
+			//cout<<opcode<<endl;
 		}
 		else {  //I type instructions
 			Itype(mmu,str,instru);
-			cout<<opcode<<endl;
+			//cout<<opcode<<endl;
 		}
 		//cout<<opcode<<endl;
 	}
@@ -154,4 +161,14 @@ void execute(MMU& mmu) {
 int main(void) {
 	MMU m;
 	execute(m);
+	cout << "Regs:" <<endl;
+	for(int i=0; i<32;i++) {
+		cout<<m.getReg(i)<<endl;
+	}
+	cout << "Mem:" <<endl;
+	for(int j=0;j<32;j++) {
+		cout << m.getMem(j)<<endl;
+	}
+	//string str("0000000000000001");
+	//cout << strtocom(str) <<endl;
 }

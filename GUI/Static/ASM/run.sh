@@ -1,6 +1,6 @@
 #! /bin/bash
 
-touch origin.txt
+touch origin.mips
 python format_instructions.py
 python mips.py
 python dismips.py

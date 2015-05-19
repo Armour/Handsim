@@ -8,27 +8,23 @@ from formatDict import addr
 dict_mark = {}  # 用于map标记与内存坐标的对应关系
 command = []  # 存储命令
 
-
-def handle_j(target, PC):  # 用来处理j类里面后面的target数值，优先看是否存在于标记中
+def handle_j(target, PC): #用来处理j类里面后面的target数值，优先看是否存在于标记中
     if target in dict_mark:
         return dict_mark[target]
     else:
         return int(target, 0)
 
-
-def handle_i(target, PC):  # 用来处理i类里面后面的target数值
+def handle_i(target, PC): #用来处理i类里面后面的target数值
     if target in dict_mark:
-        tmp = dict_mark[target] - PC / 4 - 1
+        tmp = dict_mark[target] - PC/4 - 1
         if tmp >= 0:
             return "{0:0>16d}".format(int(bin(tmp)[2:]))[-16:]
         else:
-            return str(bin(int("1" + ("{0:0>15d}".format(int(bin(-tmp)[2:]))).replace(
-                '1', '_').replace('0', '1').replace('_', '0'), 2) + 1)[2:])
-
+            return str(bin(int("1" + ("{0:0>15d}".format(int(bin(-tmp)[2:]))).replace('1', '_').replace('0', '1').replace('_', '0'),2) + 1)[2:])
 
 def check_pseudo(cmd, PC):
-    pseudo = cmd
-    arr = cmd.split()
+    pseudo = cmd;
+    arr = cmd.split();
     if arr[0] == 'move':
         pseudo = 'add ' + arr[1] + ' ' + arr[2] + ' $zero'
     elif arr[0] == 'blt':
@@ -54,10 +50,9 @@ def check_pseudo(cmd, PC):
         PC += 8
     return (pseudo, PC)
 
-
 def first_time_handle():
     PC = 0  # 当前内存坐标
-    with open('format.txt', 'r+') as test:
+    with open('format.mips', 'r+') as test:
         for line in test:
             if line != '\n':  # 空行
                 if '#' in line:  # 注释
@@ -68,7 +63,7 @@ def first_time_handle():
                     tmp = line.split(':')
                     mark = tmp[0]
                     body = tmp[1].strip()
-                    dict_mark[mark] = PC / 4  # 将标记的位置map到dict中
+                    dict_mark[mark] = PC/4  # 将标记的位置map到dict中
                 else:
                     body = line.strip()
 
@@ -85,59 +80,42 @@ def first_time_handle():
                 body, PC = check_pseudo(body, PC)
                 command.append(body)
 
-
 def R_type(arr):
     if R_dict[arr[0]][0] == 0:
-        return '000000' + code[arr[2]] + code[arr[3]] + \
-            code[arr[1]] + '00000' + R_dict[arr[0]][1]
+        return '000000' + code[arr[2]] + code[arr[3]] + code[arr[1]] + '00000' + R_dict[arr[0]][1]
     elif R_dict[arr[0]][0] == 1:
-        return '000000' + code[arr[1]] + code[arr[2]] + \
-            '00000' + '00000' + R_dict[arr[0]][1]
+        return '000000' + code[arr[1]] + code[arr[2]] + '00000' + '00000' + R_dict[arr[0]][1]
     elif R_dict[arr[0]][0] == 2:
-        return '000000' + code[arr[1]] + '00000' + \
-            '00000' + '00000' + R_dict[arr[0]][1]
+        return '000000' + code[arr[1]] + '00000' + '00000' + '00000' + R_dict[arr[0]][1]
     elif R_dict[arr[0]][0] == 3:
-        return '000000' + code[arr[3]] + code[arr[2]] + \
-            code[arr[1]] + '00000' + R_dict[arr[0]][1]
+        return '000000' + code[arr[3]] + code[arr[2]] + code[arr[1]] + '00000' + R_dict[arr[0]][1]
     elif R_dict[arr[0]][0] == 4:
-        return '000000' + '00000' + \
-            code[arr[2]] + code[arr[1]] + code[arr[3]] + R_dict[arr[0]][1]
+        return '000000' + '00000' + code[arr[2]] + code[arr[1]] + code[arr[3]] + R_dict[arr[0]][1]
     elif R_dict[arr[0]][0] == 5:
-        return '000000' + '00000' + '00000' + \
-            code[arr[1]] + '00000' + R_dict[arr[0]][1]
+        return '000000' + '00000' + '00000' + code[arr[1]] + '00000' + R_dict[arr[0]][1]
     elif R_dict[arr[0]][0] == 6:
-        return '000000' + code[arr[2]] + '00000' + \
-            code[arr[1]] + '00000' + R_dict[arr[0]][1]
+        return '000000' + code[arr[2]] + '00000' + code[arr[1]] + '00000' + R_dict[arr[0]][1]
     elif R_dict[arr[0]][0] == 7:
-        return '000000' + '00000' + '00000' + \
-            '00000' + '00000' + R_dict[arr[0]][1]
-
+        return '000000' + '00000' + '00000' + '00000' + '00000' + R_dict[arr[0]][1]
 
 def I_type(arr, PC):
     if I_dict[arr[0]][0] == 0:
-        return I_dict[arr[0]][1] + code[arr[3]] + \
-            code[arr[1]] + "{0:0>16b}".format(int(eval(arr[2])))
+        return I_dict[arr[0]][1] + code[arr[3]] + code[arr[1]] + "{0:0>16b}".format(int(eval(arr[2])))
     elif I_dict[arr[0]][0] == 1:
-        return I_dict[arr[0]][1] + code[arr[1]] + \
-            I_dict[arr[0]][2] + str(handle_i(str(arr[3]), PC))
+        return I_dict[arr[0]][1] + code[arr[1]] + I_dict[arr[0]][2] + str(handle_i(str(arr[3]), PC))
     elif I_dict[arr[0]][0] == 2:
-        return I_dict[arr[0]][1] + code[arr[1]] + \
-            code[arr[2]] + str(handle_i(str(arr[3]), PC))
+        return I_dict[arr[0]][1] + code[arr[1]] + code[arr[2]] + str(handle_i(str(arr[3]), PC))
     elif I_dict[arr[0]][0] == 3:
-        return I_dict[arr[0]][1] + code[arr[2]] + \
-            code[arr[1]] + "{0:0>16b}".format(int(eval(arr[3])))
+        return I_dict[arr[0]][1] + code[arr[2]] + code[arr[1]] + "{0:0>16b}".format(int(eval(arr[3])))
     elif I_dict[arr[0]][0] == 4:
-        return I_dict[arr[0]][1] + '00000' + code[arr[1]] + \
-            "{0:0>16b}".format(int(eval(arr[2])))
-
+        return I_dict[arr[0]][1] + '00000' + code[arr[1]] + "{0:0>16b}".format(int(eval(arr[2])))
 
 def J_type(arr, PC):
     return J_dict[arr[0]] + "{0:0>26b}".format(int(handle_j(str(arr[1]), PC)))
 
-
 def second_time_handle():
     PC = 0  # 当前内存坐标
-    with open('machineCode.txt', 'w+') as output:
+    with open('machineCode.mips', 'w+') as output:
         for sentence in command:
             arr = sentence.split()
             if arr[0] in R_dict.keys():
@@ -149,10 +127,9 @@ def second_time_handle():
             output.write(res + '\n')
             PC += 4
 
-
 def main():
     first_time_handle()
     second_time_handle()
 
 if __name__ == '__main__':
-    main()
+   main()

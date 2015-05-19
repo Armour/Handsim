@@ -8,6 +8,7 @@ class MMU{
 	public:
 		MMU() {  //constructor, basically does nothing
 			for(int i=0;i<32;i++) reg[i]=0;
+			for(int j=0;j<32;j++) main_mem[j]=0;
 			reg[29]=31;
 		}
 		~MMU() { //destructor, basically does nothing

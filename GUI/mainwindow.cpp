@@ -1,7 +1,14 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "mmu.h"
+#include <iostream>
+#include <string>
+#include <fstream>
 
+extern int strtoint(string& s);
+extern int strtocom(string& s);
+extern void Itype(MMU& mem, string& ins, ifstream& fs);
+extern void Rtype(MMU& mem, string& ins);
 extern void execute(MMU& mmu);
 extern MMU mmu;
 
